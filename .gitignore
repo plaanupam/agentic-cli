@@ -1,0 +1,6 @@
+/target
+.DS_Store
+client_secret.json
+refresh_token
+*.db
+*.log

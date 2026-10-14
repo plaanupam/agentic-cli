@@ -1,0 +1,39 @@
+[package]
+name = "google-harness"
+version = "0.1.0"
+edition = "2021"
+description = "Rust agentic harness for Gmail with local LLMs and a Ratatui TUI"
+publish = false
+license = "MIT"
+
+[dependencies]
+anyhow = "1"
+async-trait = "0.1"
+base64 = "0.22"
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.28"
+dirs = "5"
+futures = "0.3"
+hex = "0.4"
+htmd = "0.5"
+keyring = "3.6"
+mail-parser = "0.11"
+oauth2 = "4.4"
+ratatui = "0.29"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls-webpki-roots"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+schemars = { version = "0.8", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+thiserror = "2"
+tiny_http = "0.12"
+tokio = { version = "1", features = ["full"] }
+tokio-util = { version = "0.7", features = ["rt"] }
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tui-textarea = "0.7"
+url = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
