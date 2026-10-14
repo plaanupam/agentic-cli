@@ -27,12 +27,12 @@ use crate::tools::ToolRegistry;
 
 #[derive(Debug, Parser)]
 #[command(
-    name = "google-harness",
+    name = "agentic-cli",
     version,
     about = "Local Gmail agent harness with a live agent view and approval for every write."
 )]
 struct Cli {
-    /// Path to a TOML config file. Defaults to ~/.config/google-harness/config.toml.
+    /// Path to a TOML config file. Defaults to ~/.config/agentic-cli/config.toml.
     #[arg(long, global = true)]
     config: Option<PathBuf>,
 
@@ -81,7 +81,7 @@ enum AuthCommand {
 
 #[derive(Debug, Subcommand)]
 enum ConfigCommand {
-    /// Write the example config to ~/.config/google-harness/config.toml.
+    /// Write the example config to ~/.config/agentic-cli/config.toml.
     Init,
     /// Print the config path and the loaded settings.
     Show,

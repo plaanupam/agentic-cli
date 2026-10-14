@@ -74,7 +74,7 @@ impl Default for LlmConfig {
 impl Default for GmailConfig {
     fn default() -> Self {
         Self {
-            client_secret_path: "~/.config/google-harness/client_secret.json".into(),
+            client_secret_path: "~/.config/agentic-cli/client_secret.json".into(),
             redirect_port: 8765,
         }
     }
@@ -83,8 +83,8 @@ impl Default for GmailConfig {
 impl Default for StorageConfig {
     fn default() -> Self {
         Self {
-            sqlite_path: "~/.local/share/google-harness/harness.db".into(),
-            log_path: "~/.local/share/google-harness/harness.log".into(),
+            sqlite_path: "~/.local/share/agentic-cli/harness.db".into(),
+            log_path: "~/.local/share/agentic-cli/harness.log".into(),
         }
     }
 }
@@ -136,7 +136,7 @@ impl Config {
 pub fn config_dir() -> PathBuf {
     dirs::home_dir()
         .unwrap_or_else(|| PathBuf::from("."))
-        .join(".config/google-harness")
+        .join(".config/agentic-cli")
 }
 
 pub fn default_config_path() -> PathBuf {

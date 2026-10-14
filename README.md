@@ -1,4 +1,4 @@
-# google-harness
+# agentic-cli
 
 A local-first Gmail agent harness. A supervisor and its workers call a local OpenAI-compatible model (Ollama, llama.cpp, vLLM, or LM Studio). Read tools run on their own. Every draft, send, reply, label change, and trash stops for approval in the terminal UI.
 
@@ -11,7 +11,7 @@ A local-first Gmail agent harness. A supervisor and its workers call a local Ope
 ## Compile
 
 ```bash
-cd /Users/anupam/repos/google-harness
+cd /Users/anupam/repos/agentic-cli
 
 cargo build
 cargo test
@@ -21,7 +21,7 @@ cargo build --release
 cargo install --path .
 ```
 
-The release binary is `target/release/google-harness`.
+The release binary is `target/release/agentic-cli`.
 
 ## Local model
 
@@ -34,7 +34,7 @@ ollama pull qwen2.5:14b
 Ollama exposes `http://localhost:11434/v1`. The harness uses that OpenAI-compatible endpoint first. If the server answers 404, it retries Ollama's native `/api/chat`. Set `llm.api_style` to `openai` or `ollama` to force one protocol. Point `llm.base_url` and `llm.api_key` at a cloud endpoint when you want a remote fallback.
 
 ```bash
-google-harness models
+agentic-cli models
 ```
 
 ## Gmail OAuth
@@ -49,35 +49,35 @@ google-harness models
 
    `http://127.0.0.1:8765/callback`
 
-5. Download the client JSON to `~/.config/google-harness/client_secret.json`.
+5. Download the client JSON to `~/.config/agentic-cli/client_secret.json`.
 6. Sign in:
 
 ```bash
 cargo run --release -- auth login
 ```
 
-The refresh token is stored in the macOS keychain (or Linux Secret Service). If the keychain is unavailable, it falls back to `~/.config/google-harness/refresh_token` with mode `0600`.
+The refresh token is stored in the macOS keychain (or Linux Secret Service). If the keychain is unavailable, it falls back to `~/.config/agentic-cli/refresh_token` with mode `0600`.
 
 ```bash
-google-harness auth status
-google-harness auth logout
+agentic-cli auth status
+agentic-cli auth logout
 ```
 
 ## Configuration
 
 ```bash
-google-harness config init
-google-harness config show
+agentic-cli config init
+agentic-cli config show
 ```
 
-`config init` writes [`config.example.toml`](config.example.toml) to `~/.config/google-harness/config.toml`. The fields that matter first are `llm.base_url`, `llm.orchestrator_model`, `llm.worker_model`, `llm.max_context_tokens`, and `storage.sqlite_path`. Missing files use the same defaults as the example.
+`config init` writes [`config.example.toml`](config.example.toml) to `~/.config/agentic-cli/config.toml`. The fields that matter first are `llm.base_url`, `llm.orchestrator_model`, `llm.worker_model`, `llm.max_context_tokens`, and `storage.sqlite_path`. Missing files use the same defaults as the example.
 
 ## Run
 
 ```bash
 cargo run --release -- tui
 # or, after install:
-google-harness
+agentic-cli
 ```
 
 Type a goal in the bottom bar and press Enter. The left pane lists the supervisor and any workers, with status and token counts. The right pane streams thoughts and tool calls for the selected agent.
@@ -85,15 +85,15 @@ Type a goal in the bottom bar and press Enter. The left pane lists the superviso
 Headless one-shot, still with a prompt before any write:
 
 ```bash
-google-harness run summarize unread mail from today
+agentic-cli run summarize unread mail from today
 ```
 
 Saved traces:
 
 ```bash
-google-harness replay
-google-harness replay latest
-google-harness replay <session-id>
+agentic-cli replay
+agentic-cli replay latest
+agentic-cli replay <session-id>
 ```
 
 The session id is shown in the TUI startup line and at the start of a headless run. SQLite also stores an idempotency key for each successful write so the same approved payload is not sent twice.

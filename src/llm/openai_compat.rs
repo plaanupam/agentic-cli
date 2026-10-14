@@ -30,7 +30,7 @@ impl OpenAiCompatClient {
         let http = reqwest::Client::builder()
             .connect_timeout(Duration::from_secs(10))
             .timeout(Duration::from_secs(config.request_timeout_secs.max(30)))
-            .user_agent("google-harness/0.1")
+            .user_agent("agentic-cli/0.1")
             .build()
             .context("building LLM HTTP client")?;
         Ok(Self {

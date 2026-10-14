@@ -14,7 +14,7 @@ pub const SCOPE_READONLY: &str = "https://www.googleapis.com/auth/gmail.readonly
 pub const SCOPE_COMPOSE: &str = "https://www.googleapis.com/auth/gmail.compose";
 pub const SCOPE_MODIFY: &str = "https://www.googleapis.com/auth/gmail.modify";
 
-const KEYRING_SERVICE: &str = "google-harness";
+const KEYRING_SERVICE: &str = "agentic-cli";
 const KEYRING_ACCOUNT: &str = "gmail-refresh-token";
 
 #[derive(Debug, Deserialize)]
@@ -90,7 +90,7 @@ impl GmailAuth {
             .await
             .refresh_token
             .clone()
-            .ok_or_else(|| anyhow::anyhow!("Gmail is not authenticated. Run `google-harness auth login`."))?;
+            .ok_or_else(|| anyhow::anyhow!("Gmail is not authenticated. Run `agentic-cli auth login`."))?;
         let token = request_token(
             &self.http,
             &self.token_uri,
@@ -165,7 +165,7 @@ pub async fn login(config: &Config) -> anyhow::Result<()> {
             .context("timed out waiting for the Google login redirect")?;
         let request_url = request.url().to_string();
         let response = tiny_http::Response::from_string(
-            "google-harness login complete. You can close this tab.",
+            "agentic-cli login complete. You can close this tab.",
         );
         let _ = request.respond(response);
         parse_redirect(&request_url)
@@ -208,7 +208,7 @@ pub fn status() -> anyhow::Result<String> {
         Some(Location::File) => {
             Ok("Gmail refresh token is stored in the permission-restricted fallback file.".into())
         }
-        None => Ok("Gmail is not authenticated. Run `google-harness auth login`.".into()),
+        None => Ok("Gmail is not authenticated. Run `agentic-cli auth login`.".into()),
     }
 }
 

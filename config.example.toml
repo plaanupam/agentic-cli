@@ -1,4 +1,4 @@
-# Copy to ~/.config/google-harness/config.toml or run `google-harness config init`.
+# Copy to ~/.config/agentic-cli/config.toml or run `agentic-cli config init`.
 
 [llm]
 base_url = "http://localhost:11434/v1"
@@ -12,12 +12,12 @@ max_context_tokens = 8192
 request_timeout_secs = 300
 
 [gmail]
-client_secret_path = "~/.config/google-harness/client_secret.json"
+client_secret_path = "~/.config/agentic-cli/client_secret.json"
 redirect_port = 8765
 
 [storage]
-sqlite_path = "~/.local/share/google-harness/harness.db"
-log_path = "~/.local/share/google-harness/harness.log"
+sqlite_path = "~/.local/share/agentic-cli/harness.db"
+log_path = "~/.local/share/agentic-cli/harness.log"
 
 [agent]
 max_supervisor_steps = 12

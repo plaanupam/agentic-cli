@@ -54,7 +54,7 @@ impl GmailClient {
         let http = reqwest::Client::builder()
             .connect_timeout(Duration::from_secs(10))
             .timeout(Duration::from_secs(60))
-            .user_agent("google-harness/0.1")
+            .user_agent("agentic-cli/0.1")
             .build()
             .context("building Gmail HTTP client")?;
         let secret_path = config.client_secret_path();
@@ -265,7 +265,7 @@ impl GmailClient {
     ) -> anyhow::Result<Value> {
         let auth = self.auth.as_ref().ok_or_else(|| {
             anyhow::anyhow!(
-                "Gmail client secret is missing at {}. Download a Desktop OAuth client and run `google-harness auth login`.",
+                "Gmail client secret is missing at {}. Download a Desktop OAuth client and run `agentic-cli auth login`.",
                 self.secret_path.display()
             )
         })?;

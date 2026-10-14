@@ -1,5 +1,5 @@
 [package]
-name = "google-harness"
+name = "agentic-cli"
 version = "0.1.0"
 edition = "2021"
 description = "Rust agentic harness for Gmail with local LLMs and a Ratatui TUI"

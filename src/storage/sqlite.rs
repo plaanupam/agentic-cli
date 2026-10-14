@@ -224,7 +224,7 @@ mod tests {
     #[test]
     fn sqlite_round_trip_session_event_and_idempotency() {
         let path = std::env::temp_dir().join(format!(
-            "google-harness-test-{}",
+            "agentic-cli-test-{}",
             uuid::Uuid::new_v4()
         ));
         let store = Store::open(&path.join("t.db")).unwrap();

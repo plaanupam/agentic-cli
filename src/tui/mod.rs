@@ -72,7 +72,7 @@ pub async fn run_with_approvals(
     mut ui_rx: broadcast::Receiver<AgentEvent>,
 ) -> anyhow::Result<()> {
     if !std::io::IsTerminal::is_terminal(&std::io::stdout()) {
-        anyhow::bail!("stdout is not a terminal; use `google-harness run <goal>`");
+        anyhow::bail!("stdout is not a terminal; use `agentic-cli run <goal>`");
     }
     let _guard = TermGuard;
     let mut terminal = setup_terminal()?;
