@@ -1,13 +1,14 @@
 # Copy to ~/.config/agentic-cli/config.toml or run `agentic-cli config init`.
 
 [llm]
-base_url = "http://localhost:11434/v1"
-api_key = "ollama"
-# auto tries the OpenAI-compatible API, then Ollama's native /api/chat on HTTP 404.
-# Use "openai" or "ollama" to force one protocol.
-api_style = "auto"
-orchestrator_model = "qwen2.5:14b"
-worker_model = "qwen2.5:14b"
+base_url = "https://openrouter.ai/api/v1"
+api_key = "sk-or-..."
+# openai talks to OpenRouter and other /v1/chat/completions hosts.
+# auto tries that API, then Ollama's native /api/chat on HTTP 404.
+# Use "ollama" to force a local Ollama server.
+api_style = "openai"
+orchestrator_model = "recursive/flint-v1.0:free"
+worker_model = "recursive/flint-v1.0:free"
 max_context_tokens = 8192
 request_timeout_secs = 300
 

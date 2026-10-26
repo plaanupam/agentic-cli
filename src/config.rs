@@ -60,11 +60,11 @@ impl Default for Config {
 impl Default for LlmConfig {
     fn default() -> Self {
         Self {
-            base_url: "http://localhost:11434/v1".into(),
-            api_key: "ollama".into(),
-            api_style: "auto".into(),
-            orchestrator_model: "qwen2.5:14b".into(),
-            worker_model: "qwen2.5:14b".into(),
+            base_url: "https://openrouter.ai/api/v1".into(),
+            api_key: String::new(),
+            api_style: "openai".into(),
+            orchestrator_model: "recursive/flint-v1.0:free".into(),
+            worker_model: "recursive/flint-v1.0:free".into(),
             max_context_tokens: 8192,
             request_timeout_secs: 300,
         }
