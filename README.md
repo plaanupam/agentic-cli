@@ -23,19 +23,44 @@ cargo install --path .
 
 The release binary is `target/release/agentic-cli`.
 
-## Local model
+## OpenRouter
 
-```bash
-ollama serve
-ollama pull qwen2.5:14b
-# or: ollama pull llama3.1:8b
+The default host is OpenRouter. Put your key in `~/.config/agentic-cli/config.toml` (this file is not in git):
+
+```toml
+[llm]
+base_url = "https://openrouter.ai/api/v1"
+api_key = "sk-or-..."
+api_style = "openai"
+orchestrator_model = "recursive/flint-v1.0:free"
+worker_model = "recursive/flint-v1.0:free"
 ```
 
-Ollama exposes `http://localhost:11434/v1`. The harness uses that OpenAI-compatible endpoint first. If the server answers 404, it retries Ollama's native `/api/chat`. Set `llm.api_style` to `openai` or `ollama` to force one protocol. Point `llm.base_url` and `llm.api_key` at a cloud endpoint when you want a remote fallback.
+`api_style` must be `openai`. The base URL must end in `/v1`. Use an OpenRouter model id, and pick one that accepts tool calls. `agentic-cli config show` prints the URL and model names and does not print `api_key`.
 
 ```bash
 agentic-cli models
 ```
+
+## Local model
+
+Ollama still works if you point the same fields at it:
+
+```bash
+ollama serve
+ollama pull qwen2.5:14b
+```
+
+```toml
+[llm]
+base_url = "http://localhost:11434/v1"
+api_key = "ollama"
+api_style = "ollama"
+orchestrator_model = "qwen2.5:14b"
+worker_model = "qwen2.5:14b"
+```
+
+`api_style = "auto"` tries `/v1/chat/completions` first, then Ollama's native `/api/chat` when that route returns 404.
 
 ## Gmail OAuth
 
